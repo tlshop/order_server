@@ -45,7 +45,7 @@ class AlipayBase(object):
 
         order_string = self.alipay.api_alipay_trade_page_pay(
             out_trade_no=order_id,
-            total_amount=str(amount.quantize(Decimal('0.00'))),
+            total_amount=str(Decimal(str(amount)).quantize(Decimal('0.00'))),
             subject='支付订单:%s' % order_id if not subject else subject,
             return_url=None,
             notify_url=None,
