@@ -25,3 +25,4 @@ pyDes
 python-stdnum==1.3
 rsa
 beautifulsoup4
+python-alipay-sdk
