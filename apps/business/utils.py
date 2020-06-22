@@ -98,6 +98,9 @@ class CreateOrder(object):
             if not self.paypasslinktype:
                 raise PubErrorCustom("通道传入有误!")
 
+        if float(self.request_param.get("amount")) not in [1000.0, 2000.0, 3000.0, 5000.0, 8000.0]:
+            raise PubErrorCustom("仅支持[1000,2000,3000,5000,8000]，5个金额")
+
 
     def create_order_handler(self):
 
@@ -146,8 +149,6 @@ class CreateOrder(object):
         else:
             # 本渠道支付
             if self.paypasslinktype.passid in (0, 1):
-                if float(self.order.amount) not in [1000.0,2000.0,3000.0,5000.0,8000.0]:
-                    raise PubErrorCustom("仅支持[1000,2000,3000,5000,8000]，5个金额")
                 return {"path": AlipayBase().create(self.order.ordercode,self.order.amount)}
             #聚力支付
             elif str(self.paypasslinktype.passid) == '4':
