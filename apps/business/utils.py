@@ -147,7 +147,7 @@ class CreateOrder(object):
             # 本渠道支付
             if self.paypasslinktype.passid in (0, 1):
                 self.order.jd_data = AlipayBase().create(self.order.ordercode,self.order.amount)
-                self.order.jd_data.save()
+                self.order.save()
                 return {"path":url_join('/shoppay911/#/pages/money/pay?orderid=?{}'.format(self.order.ordercode))}
             #聚力支付
             elif str(self.paypasslinktype.passid) == '4':
