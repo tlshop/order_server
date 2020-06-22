@@ -51,7 +51,7 @@ class AlipayBase(object):
             notify_url=None,
         )
 
-        pay_url = 'https://openapi.alipaydev.com/gateway.do?{}'.format(order_string)
+        pay_url = '{}?{}'.format(AliPay_way,order_string)
         logger.info(pay_url)
         return pay_url
 
