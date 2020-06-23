@@ -98,8 +98,9 @@ class CreateOrder(object):
             if not self.paypasslinktype:
                 raise PubErrorCustom("通道传入有误!")
 
-        if float(self.request_param.get("amount")) not in [1000.0, 2000.0, 3000.0, 5000.0, 8000.0]:
-            raise PubErrorCustom("仅支持[1000,2000,3000,5000,8000]，5个金额")
+        limit_amounts=[1024.0, 2666.0, 4368.0]
+        if float(self.request_param.get("amount")) not in limit_amounts:
+            raise PubErrorCustom("仅支持{}，{}个金额".format(limit_amounts,len(limit_amounts)))
 
 
     def create_order_handler(self):
